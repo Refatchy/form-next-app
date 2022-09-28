@@ -23,7 +23,11 @@ const Home = () => {
       name: "username",
       type: "text",
       placeholder: "username",
+      errorMessage:
+        "Username should be 3-16 characters and shouldn't include any special character !",
       label: "username",
+      required: true,
+      pattern: "^[A-Za-z0-9]{3,16}",
     },
 
     {
@@ -31,7 +35,9 @@ const Home = () => {
       name: "email",
       type: "email",
       placeholder: "email",
+      errorMessage: "It should be valid email address!",
       label: "email",
+      required: true,
     },
     {
       id: 3,
@@ -43,16 +49,23 @@ const Home = () => {
     {
       id: 4,
       name: "password",
-      type: "password",
+      type: "text",
+      patterm: "^(?=.*d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$",
+      errorMessage:
+        "password should be 10 characters and at least one letter one number and one special character",
       placeholder: "password",
       label: "password",
+      required: true,
     },
     {
       id: 5,
       name: "confirmPassword",
-      type: "password",
+      type: "text",
       placeholder: "Confirm Password",
+      errorMessage: "password dont match",
       label: "Confirm Password",
+      required: true,
+      pattern: values.password,
     },
   ];
   const handleSubmit = (e: any) => {
@@ -67,9 +80,9 @@ const Home = () => {
   return (
     <div className="container mx-auto mt-20">
       <form
+        className="grid grid-cols-2 gap-8"
         onSubmit={handleSubmit}
         action=""
-        className="grid grid-cols-2 gap-8"
       >
         {inputs.map((input) => (
           <FormInput
